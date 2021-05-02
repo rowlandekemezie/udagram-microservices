@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-feed
+  namespace: udagram-dev
+  labels:
+    app: udagram-api-feed
+spec:
+  replica: 2
+  selector:
+    matchlabels:
+      app: udagram-api-feed
+  template:
+    metadata:
+      labels: 
+        app: udagram-api-feed
+    spec:
+      containers:
+      - name: udagram-api-feed
+        image: rowlandekemezie/udagram-api-feed
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"

@@ -10,8 +10,8 @@ before_script: []
 
 script:
   - docker --version
-  - docker build -f udagram-feed-api/Dockerfile -t  rowlandekemezie/udagram-feed-api:latest udagram-feed-api
-  - docker build -f udagram-user-api/Dockerfile -t  rowlandekemezie/udagram-user-api:latest udagram-user-api
+  - docker build -f udagram-feed-api/Dockerfile -t  rowlandekemezie/udagram-api-feed:latest udagram-api-feed
+  - docker build -f udagram-user-api/Dockerfile -t  rowlandekemezie/udagram-api-feed:latest udagram-api-user
   - docker build -f udagram-frontend/Dockerfile -t  rowlandekemezie/udagram-frontend:latest udagram-frontend
   - docker build -f udagram-reverse-proxy/Dockerfile -t  rowlandekemezie/udagram-reverse-proxy:latest udagram-reverse-proxy
 
