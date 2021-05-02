@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  udagram-reverse-proxy:
+    build:
+      context: ./udagram-reverse-proxy
+      dockerfile: Dockerfile
+    image: rowlandekemezie/udagram-reverse-proxy
+    restart: always
+    depends_on: 
+      - udagram-api-feed
+      - udagram-api-user
+    ports:
+      - "8080:8080"
+  
+  udagram-frontend:
+    build:
+      context: ./udagram-frontend
+      dockerfile: Dockerfile
+    image: rowlandekemezie/udagram-frontend
+    ports:
+      - "8100:80"
+      
+  udagram-api-feed:
+    build:
+      context: ./udagram-api-feed
+      dockerfile: Dockerfile
+    image: rowlandekemezie/udagram-api-feed
+    env_file: 
+      - ./udagram-api-feed/.env
+    # volumes: 
+    #   - ./udagram-api-feed:/usr/src/app/udagram-api-feed:delegated
+      
+  udagram-api-user:
+    build:
+      context: ./udagram-api-user
+      dockerfile: Dockerfile
+    image: rowlandekemezie/udagram-api-user
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: udagram-dev-instance.cy1a8vcfhlgm.us-west-2.rds.amazonaws.com
+      AWS_REGION: us-west-2
+      AWS_PROFILE: default
+      AWS_BUCKET: udagram-project-4-dev
+      JWT_SECRET: test
+      URL: "http://localhost:8100"
+    # volumes: 
+    #   - ./udagram-api-user:/usr/src/app/udagram-api-user:delegated

@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  udagram-reverse-proxy:
+    build:
+      context: ./udagram-reverse-proxy
+    image: rowlandekemezie/udagram-reverse-proxy:"$VERSION"
+    
+  udagram-frontend:
+    build:
+      context: ./udagram-frontend
+    image: rowlandekemezie/udagram-frontend:prod
+      
+  udagram-api-feed:
+    build:
+      context: ./udagram-api-feed
+    image: rowlandekemezie/udagram-api-feed:"$VERSION"
+  
+  udagram-api-user:
+    build:
+      context: ./udagram-api-user
+      dockerfile: Dockerfile
+    image: rowlandekemezie/udagram-api-user:"$VERSION"
