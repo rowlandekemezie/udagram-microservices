@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-feed
+  name: udagram-api-user
   namespace: udagram
   labels:
-    app: udagram-api-feed
+    app: udagram-api-user
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: udagram-api-feed
+      app: udagram-api-user
   template:
     metadata:
       labels: 
-        app: udagram-api-feed
+        app: udagram-api-user
     spec:
       containers:
-        - name: udagram-api-feed
-          image: rowlandekemezie/udagram-api-feed
+        - name: udagram-api-user
+          image: rowlandekemezie/udagram-api-user
           imagePullPolicy: Always
           resources:
             requests:
@@ -25,10 +25,11 @@ spec:
               cpu: "250m"
             limits:
               memory: "1024Mi"
-              cpu: "250m"
+              cpu: "500m"
           # envFrom:
-          # - configMapRef:
-          #     name: env-config
+            # Load the Complete ConfigMap
+            # - configMapRef:
+            #     name: env-config
           env:
             - name: POSTGRES_USERNAME
               value: "postgres"
