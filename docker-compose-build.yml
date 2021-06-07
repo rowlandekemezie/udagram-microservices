@@ -3,20 +3,20 @@ services:
   udagram-reverse-proxy:
     build:
       context: ./udagram-reverse-proxy
-    image: rowlandekemezie/udagram-reverse-proxy:"$VERSION"
+    image: rowlandekemezie/udagram-reverse-proxy
     
   udagram-frontend:
     build:
       context: ./udagram-frontend
-    image: rowlandekemezie/udagram-frontend:prod
+    image: rowlandekemezie/udagram-frontend
       
   udagram-api-feed:
     build:
       context: ./udagram-api-feed
-    image: rowlandekemezie/udagram-api-feed:"$VERSION"
+    image: rowlandekemezie/udagram-api-feed
   
   udagram-api-user:
     build:
       context: ./udagram-api-user
       dockerfile: Dockerfile
-    image: rowlandekemezie/udagram-api-user:"$VERSION"
+    image: rowlandekemezie/udagram-api-user
